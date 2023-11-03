@@ -17,5 +17,6 @@ public class OrderServiceImplTest {
         OrderServiceImpl orderService = new OrderServiceImpl(memberRepository, new FixDiscountPolicy());
         Order itemA = orderService.createOrder(1L, "itemA", 10000);
         Assertions.assertThat(itemA.getDiscountPrice()).isEqualTo(1000);
+
     }
 }
