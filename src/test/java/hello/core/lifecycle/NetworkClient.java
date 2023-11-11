@@ -1,9 +1,6 @@
 package hello.core.lifecycle;
 
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.InitializingBean;
-
-public class NetworkClient implements InitializingBean, DisposableBean {
+public class NetworkClient {
     private String url;
 
     public NetworkClient(){
@@ -28,6 +25,19 @@ public class NetworkClient implements InitializingBean, DisposableBean {
     }
 
 
+
+    public void init(){
+        System.out.println("NetworkClient.init");
+        connect();
+        call("초기화 연결 메시지");
+    }
+    public void close(){
+        System.out.println("NetworkClient.close");
+        disconnect();
+    }
+
+/*
+옛날 방식으로 최근에는 사용하지 않는다.
     //프로퍼티셋(의존관계 주입)이 끝난 후에 호출
     @Override
     public void afterPropertiesSet() throws Exception {
@@ -39,5 +49,5 @@ public class NetworkClient implements InitializingBean, DisposableBean {
     @Override
     public void destroy() throws Exception {
         disconnect();
-    }
+    }*/
 }
